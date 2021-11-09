@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SignActivity">
+
+
+    <TextView
+        android:id="@+id/SignActivity_tv_signTitle"
+        style="@style/LoginActivity_style_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/signTitle"
+        app:layout_constraintBottom_toTopOf="@+id/SignActivity_et_firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.385"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.534"/>
+
+    <EditText
+        android:id="@+id/SignActivity_et_firstName"
+        style="@style/SignActivity_style_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:background="@drawable/sign_in_et_sign"
+        android:hint="@string/firstName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/SignActivity_tv_signTitle" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_checkFN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="64dp"
+        android:background="@drawable/ic_cancel"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_et_firstName"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_tv_signTitle" />
+
+    <EditText
+        android:id="@+id/SignActivity_et_lastName"
+        style="@style/SignActivity_style_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/sign_in_et_sign"
+        android:hint="@string/lastName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_et_firstName" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_checkLN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/ic_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.506"
+        android:visibility="invisible"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_et_lastName"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_tv_checkFN" />
+
+    <EditText
+        android:id="@+id/SignActivity_et_address"
+        style="@style/SignActivity_style_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sign_in_et_sign"
+        android:hint="@string/address"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_et_lastName" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_checkA"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="52dp"
+        android:visibility="invisible"
+        android:background="@drawable/ic_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.528"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_et_address"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_tv_checkLN" />
+
+    <EditText
+        android:id="@+id/SignActivity_et_userName"
+        style="@style/SignActivity_style_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/sign_in_et_sign"
+        android:drawableStart="@drawable/ic_username"
+        android:drawablePadding="12dp"
+        android:hint="@string/username"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_et_address" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_checkUN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/ic_cancel"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_et_userName"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_tv_checkA" />
+
+    <EditText
+        android:id="@+id/SignActivity_et_password"
+        style="@style/SignActivity_style_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/sign_in_et_sign"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="12dp"
+        android:hint="@string/Password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_et_userName" />
+
+
+    <TextView
+        android:id="@+id/SignActivity_tv_checkP"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/ic_cancel"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.166"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_et_password"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_tv_checkUN" />
+
+    <EditText
+        android:id="@+id/SignActivity_et_rePassword"
+        style="@style/SignActivity_style_sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:background="@drawable/sign_in_et_sign"
+        android:drawableStart="@drawable/ic_lock"
+        android:drawablePadding="12dp"
+        android:hint="@string/rePassword"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_et_password" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_checkRP"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="44dp"
+        android:background="@drawable/ic_cancel"
+        android:visibility="invisible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_et_rePassword"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_tv_checkP" />
+
+    <Button
+        android:id="@+id/SignActivity_btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginTop="148dp"
+        android:background="@drawable/login_activity_btn_login"
+        android:onClick="SignNewUser"
+        android:text="@string/Login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/SignActivity_et_rePassword" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="76dp"
+        android:text="@string/hyper_login"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.229"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/SignActivity_btn_login" />
+
+    <TextView
+        android:id="@+id/SignActivity_tv_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:text="@string/login_here"
+        android:textColor="#ff000077"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.084"
+        app:layout_constraintStart_toEndOf="@+id/SignActivity_tv_title"
+        app:layout_constraintTop_toTopOf="@+id/SignActivity_btn_login" />
+
+<!--    <TextView-->
+<!--        android:id="@+id/SignActivity_tv_login"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="68dp"-->
+<!--        android:text="@string/login_here2"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.0"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="@+id/SignActivity_btn_login" />-->
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

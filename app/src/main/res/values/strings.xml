@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Fitness</string>
+    <string name="username">Username</string>
+    <string name="Password">password</string>
+    <string name="Login">login</string>
+    <string name="remember">Remember me</string>
+    <string name="fitness">Keep Fitness</string>
+    <string name="sign">Sign In</string>
+    <string name="firstName">First Name</string>
+    <string name="lastName">Last Name</string>
+    <string name="address">Address</string>
+    <string name="rePassword">Repeat Password</string>
+    <string name="or">OR</string>
+    <string name="signTitle">Sign In for a new account</string>
+    <string name="hyper_login">Already have an account</string>
+    <string name="login_here">Login Here</string>
+    <!--    <string name="login_here2">Already have an account <a href="android.R.layout.activity_login">login here</a>  </string>-->
+</resources>

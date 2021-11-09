@@ -1,0 +1,106 @@
+package com.example.mainactivity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class MainActivity extends AppCompatActivity {
+
+
+    private static final String SPORT = "sport";
+    private ListView MainActivity_lv_sport;
+    private ArrayList<com.example.mainactivity.Sport> sportList = new ArrayList<>();
+    private Thread adapterThread;
+    private com.example.mainactivity.Sport selectedSport;
+    private Gson gson = new Gson();
+
+    private SharedPreferences sp;
+    private SharedPreferences.Editor editor;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        MainActivity_lv_sport = findViewById(R.id.MainActivity_lv_sport);
+
+        addData();
+        setUpPreference();
+
+
+        com.example.mainactivity.MyAdapter adapter = new com.example.mainactivity.MyAdapter(this, R.layout.activity_main_design, sportList);
+
+
+        adapterThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                MainActivity_lv_sport.setAdapter(adapter);
+            }
+        });
+        adapterThread.start();
+
+
+        MainActivity_lv_sport.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                selectedSport = sportList.get(position);
+                String s = gson.toJson(selectedSport);
+                editor.putString(SPORT, s);
+                editor.apply();
+                Intent intent = new Intent(MainActivity.this, com.example.mainactivity.SportActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
+    private void addData() {
+
+//        sportList.add(new Sport("Football", new ArrayList<String>().addAll(Arrays.asList(new String[]{"5:00", "10:00", "3:00"})), "is a family of team sports that involve, to varying degrees, kicking a ball to score a goal. Unqualified, the word football normally means the form of football that is the most popular where the word is used. Sports commonly called football include association football (known as soccer in North America and Oceania); gridiron football (specifically American football or Canadian football); Australian rules football; rugby union and rugby league; and Gaelic football.[1] These various forms of football share to varying extent common origins and are known as football codes", R.drawable.football));
+//        sportList.add(new Sport("Basketball", new String[]{"4:00", "1:00", "3:00"}, " is a team sport in which two teams, most commonly of five players each, opposing one another on a rectangular court, compete with the primary objective of shooting a basketball (approximately 9.4 inches (24 cm) in diameter) through the defender's hoop (a basket 18 inches (46 cm) in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court) while preventing the opposing team from shooting through their own hoop. A field goal is worth two points, unless made from behind the three-point line, when it is worth three. After a foul, timed play stops and the player fouled or designated to shoot a technical foul is given one, two or three one-point free throws. The team with the most points at the end of the game wins, but if regulation play expires with the score tied, an additional period of play (overtime) is mandated.", R.drawable.basketball));
+//        sportList.add(new Sport("Soccer", new String[]{"8:00", "2:00", "3:00"}, "is run by different organizations.[8] The United States Soccer Federation governs most levels of soccer in the country, including the national teams, professional leagues, and amateur leagues. The National Collegiate Athletic Association (NCAA) governs colleges and the National Federation of State High School Associations (NFHS) governs schools.[8] The match regulations are generally the same between the three governing bodies although there are many subtle differences", R.drawable.soccer));
+//        sportList.add(new Sport("Ice Rocket", new String[]{"1:00", "10:00", "3:00"}, " is a contact winter team sport played on ice skates, usually on a rink. It is one of the fastest team sports on ice belonging to a small group of four ice skating team sports which now includes bandy, ringette, and rinkball. In ice hockey, two opposing teams use ice hockey sticks to control, advance and shoot a closed, vulcanized, rubber disc called a \"puck\" into the other team's goal. Each goal is worth one point. The team which scores the most goals is declared the winner. In a formal game, each team has six skaters on the ice at a time, barring any penalties, one of whom is the goaltender. In North America and some European countries the sport is known simply as \"hockey\" in common parlance, however in many countries, \"hockey\" usually refers to field hockey, except in some Northern areas of Russia where bandy is still referred to as \"Russian hockey\" or \"hockey with a ball\". The sport of lacrosse was considered the national sport of Canada until 1994[1] but is now considered the country's official national summer sport while ice hockey is considered its official national winter sport.", R.drawable.ice_hockey));
+//        sportList.add(new Sport("Tennis", new String[]{"5:00", "10:00", "3:00"}, "is a racket sport that can be played individually against a single opponent (singles) or between two teams of two players each (doubles). Each player uses a tennis racket that is strung with cord to strike a hollow rubber ball covered with felt over or around a net and into the opponent's court. The object of the game is to manoeuvre the ball in such a way that the opponent is not able to play a valid return. The player who is unable to return the ball will not gain a point, while the opposite player will.", R.drawable.tennis));
+//        sportList.add(new Sport("Cricket", new String[]{"6:00", "10:00", "3:00"}, " is a bat-and-ball game played between two teams of eleven players on a field at the centre of which is a 22-yard (20-metre) pitch with a wicket at each end, each comprising two bails balanced on three stumps. The game proceeds when a player on the fielding team, called the bowler, \"bowls\" (propels) the ball from one end of the pitch towards the wicket at the other end. The batting side's players score runs by striking the bowled ball with a bat and running between the wickets, while the bowling side tries to prevent this by keeping the ball within the field and getting it to either wicket, and dismiss each batter (so they are \"out\"). Means of dismissal include being bowled, when the ball hits the stumps and dislodges the bails, and by the fielding side either catching a hit ball before it touches the ground, or hitting a wicket with the ball before a batter can cross the crease line in front of the wicket to complete a run. When ten batters have been dismissed, the innings ends and the teams swap roles. The game is adjudicated by two umpires, aided by a third umpire and match referee in international matches.",R.drawable.cricket));
+//        sportList.add(new Sport("Baseball", new String[]{"4:00", "10:00", "3:00"}, " is a bat-and-ball game played between two opposing teams, typically of nine players each, that take turns batting and fielding. The game proceeds when a player on the fielding team, called the pitcher, throws a ball which a player on the batting team tries to hit with a bat. The objective of the offensive team (batting team) is to hit the ball into the field of play, allowing its players to run the bases, having them advance counter-clockwise around four bases to score what are called \"runs\". The objective of the defensive team (fielding team) is to prevent batters from becoming runners, and to prevent runners' advance around the bases.[2] A run is scored when a runner legally advances around the bases in order and touches home plate (the place where the player started as a batter). The team that scores the most runs by the end of the game is the winner.", R.drawable.baseball));
+//        sportList.add(new Sport("Golf", new String[]{"1:00", "10:00", "3:00"}, " is a club-and-ball sport in which players use various clubs to hit balls into a series of holes on a course in as few strokes as possible. Golf, unlike most ball games, cannot and does not utilize a standardized playing area, and coping with the varied terrains encountered on different courses is a key part of the game. The game at the usual level is played on a course with an arranged progression of 18 holes, though recreational courses can be smaller, often having nine holes. Each hole on the course must contain a teeing ground to start from, and a putting green containing the actual hole or cup 4+1⁄4 inches (11 cm) in diameter. There are other standard forms of terrain in between, such as the fairway, rough (long grass), bunkers (or \"sand traps\"), and various hazards (water, rocks) but each hole on a course is unique in its specific layout and arrangement.", R.drawable.golf));
+//        sportList.add(new Sport("Bowling", new String[]{"7:00", "10:00", "3:00"}, " is a target sport and recreational activity in which a player rolls a ball toward pins (in pin bowling) or another target (in target bowling). The term bowling usually refers to pin bowling (most commonly ten-pin bowling), though in the United Kingdom and Commonwealth countries, bowling could also refer to target bowling, such as lawn bowls.", R.drawable.bowling));
+//        sportList.add(new Sport("Dodgeball", new String[]{"11:00", "10:00", "3:00"}, "is a team sport in which players on two teams try to throw balls and hit opponents, while avoiding being hit themselves. The objective of each team is to eliminate all members of the opposing team by hitting them with thrown balls, catching a ball thrown by an opponent, or inducing an opponent to commit a violation, such as stepping outside the court.", R.drawable.dodgeball));
+//        sportList.add(new Sport("Diving", new String[]{"12:00", "10:00", "3:00"}, "is the sport of jumping or falling into water from a platform or springboard, usually while performing acrobatics. Diving is an internationally recognized sport that is part of the Olympic Games. In addition, unstructured and non-competitive diving is a recreational pastime.", R.drawable.diving));
+//        sportList.add(new Sport("Wrestling", new String[]{"4:00", "10:00", "3:00"}, "is a combat sport involving grappling-type techniques such as clinch fighting, throws and takedowns, joint locks, pins and other grappling holds. The sport can either be genuinely competitive or sportive entertainment (see professional wrestling). Wrestling comes in different types[1] such as folkstyle, freestyle, Greco-Roman, catch, submission, judo, sambo and others. A wrestling bout is a physical competition, between two (occasionally more) competitors or sparring partners, who attempt to gain and maintain a superior position. There are a wide range of styles with varying rules with both traditional historic and modern styles. Wrestling techniques have been incorporated into other martial arts as well as military hand-to-hand combat systems.", R.drawable.wrestling));
+
+        sportList.add(new com.example.mainactivity.Sport("Football", "5:00", "is a family of team sports that involve, to varying degrees, kicking a ball to score a goal. Unqualified, the word football normally means the form of football that is the most popular where the word is used. Sports commonly called football include association football (known as soccer in North America and Oceania); gridiron football (specifically American football or Canadian football); Australian rules football; rugby union and rugby league; and Gaelic football.[1] These various forms of football share to varying extent common origins and are known as football codes", R.drawable.football));
+        sportList.add(new com.example.mainactivity.Sport("Basketball", "4:00", " is a team sport in which two teams, most commonly of five players each, opposing one another on a rectangular court, compete with the primary objective of shooting a basketball (approximately 9.4 inches (24 cm) in diameter) through the defender's hoop (a basket 18 inches (46 cm) in diameter mounted 10 feet (3.048 m) high to a backboard at each end of the court) while preventing the opposing team from shooting through their own hoop. A field goal is worth two points, unless made from behind the three-point line, when it is worth three. After a foul, timed play stops and the player fouled or designated to shoot a technical foul is given one, two or three one-point free throws. The team with the most points at the end of the game wins, but if regulation play expires with the score tied, an additional period of play (overtime) is mandated.", R.drawable.basketball));
+        sportList.add(new com.example.mainactivity.Sport("Soccer","8:00", "is run by different organizations.[8] The United States Soccer Federation governs most levels of soccer in the country, including the national teams, professional leagues, and amateur leagues. The National Collegiate Athletic Association (NCAA) governs colleges and the National Federation of State High School Associations (NFHS) governs schools.[8] The match regulations are generally the same between the three governing bodies although there are many subtle differences", R.drawable.soccer));
+        sportList.add(new com.example.mainactivity.Sport("Ice Rocket", "1:00", " is a contact winter team sport played on ice skates, usually on a rink. It is one of the fastest team sports on ice belonging to a small group of four ice skating team sports which now includes bandy, ringette, and rinkball. In ice hockey, two opposing teams use ice hockey sticks to control, advance and shoot a closed, vulcanized, rubber disc called a \"puck\" into the other team's goal. Each goal is worth one point. The team which scores the most goals is declared the winner. In a formal game, each team has six skaters on the ice at a time, barring any penalties, one of whom is the goaltender. In North America and some European countries the sport is known simply as \"hockey\" in common parlance, however in many countries, \"hockey\" usually refers to field hockey, except in some Northern areas of Russia where bandy is still referred to as \"Russian hockey\" or \"hockey with a ball\". The sport of lacrosse was considered the national sport of Canada until 1994[1] but is now considered the country's official national summer sport while ice hockey is considered its official national winter sport.", R.drawable.ice_hockey));
+        sportList.add(new com.example.mainactivity.Sport("Tennis", "5:00", "is a racket sport that can be played individually against a single opponent (singles) or between two teams of two players each (doubles). Each player uses a tennis racket that is strung with cord to strike a hollow rubber ball covered with felt over or around a net and into the opponent's court. The object of the game is to manoeuvre the ball in such a way that the opponent is not able to play a valid return. The player who is unable to return the ball will not gain a point, while the opposite player will.", R.drawable.tennis));
+        sportList.add(new com.example.mainactivity.Sport("Cricket", "6:00", " is a bat-and-ball game played between two teams of eleven players on a field at the centre of which is a 22-yard (20-metre) pitch with a wicket at each end, each comprising two bails balanced on three stumps. The game proceeds when a player on the fielding team, called the bowler, \"bowls\" (propels) the ball from one end of the pitch towards the wicket at the other end. The batting side's players score runs by striking the bowled ball with a bat and running between the wickets, while the bowling side tries to prevent this by keeping the ball within the field and getting it to either wicket, and dismiss each batter (so they are \"out\"). Means of dismissal include being bowled, when the ball hits the stumps and dislodges the bails, and by the fielding side either catching a hit ball before it touches the ground, or hitting a wicket with the ball before a batter can cross the crease line in front of the wicket to complete a run. When ten batters have been dismissed, the innings ends and the teams swap roles. The game is adjudicated by two umpires, aided by a third umpire and match referee in international matches.",R.drawable.cricket));
+        sportList.add(new com.example.mainactivity.Sport("Baseball", "4:00", " is a bat-and-ball game played between two opposing teams, typically of nine players each, that take turns batting and fielding. The game proceeds when a player on the fielding team, called the pitcher, throws a ball which a player on the batting team tries to hit with a bat. The objective of the offensive team (batting team) is to hit the ball into the field of play, allowing its players to run the bases, having them advance counter-clockwise around four bases to score what are called \"runs\". The objective of the defensive team (fielding team) is to prevent batters from becoming runners, and to prevent runners' advance around the bases.[2] A run is scored when a runner legally advances around the bases in order and touches home plate (the place where the player started as a batter). The team that scores the most runs by the end of the game is the winner.", R.drawable.baseball));
+        sportList.add(new com.example.mainactivity.Sport("Golf", "1:00", " is a club-and-ball sport in which players use various clubs to hit balls into a series of holes on a course in as few strokes as possible. Golf, unlike most ball games, cannot and does not utilize a standardized playing area, and coping with the varied terrains encountered on different courses is a key part of the game. The game at the usual level is played on a course with an arranged progression of 18 holes, though recreational courses can be smaller, often having nine holes. Each hole on the course must contain a teeing ground to start from, and a putting green containing the actual hole or cup 4+1⁄4 inches (11 cm) in diameter. There are other standard forms of terrain in between, such as the fairway, rough (long grass), bunkers (or \"sand traps\"), and various hazards (water, rocks) but each hole on a course is unique in its specific layout and arrangement.", R.drawable.golf));
+        sportList.add(new com.example.mainactivity.Sport("Bowling", "7:00", " is a target sport and recreational activity in which a player rolls a ball toward pins (in pin bowling) or another target (in target bowling). The term bowling usually refers to pin bowling (most commonly ten-pin bowling), though in the United Kingdom and Commonwealth countries, bowling could also refer to target bowling, such as lawn bowls.", R.drawable.bowling));
+        sportList.add(new com.example.mainactivity.Sport("Dodgeball", "11:00", "is a team sport in which players on two teams try to throw balls and hit opponents, while avoiding being hit themselves. The objective of each team is to eliminate all members of the opposing team by hitting them with thrown balls, catching a ball thrown by an opponent, or inducing an opponent to commit a violation, such as stepping outside the court.", R.drawable.dodgeball));
+        sportList.add(new com.example.mainactivity.Sport("Diving", "12:00", "is the sport of jumping or falling into water from a platform or springboard, usually while performing acrobatics. Diving is an internationally recognized sport that is part of the Olympic Games. In addition, unstructured and non-competitive diving is a recreational pastime.", R.drawable.diving));
+        sportList.add(new com.example.mainactivity.Sport("Wrestling", "4:00", "is a combat sport involving grappling-type techniques such as clinch fighting, throws and takedowns, joint locks, pins and other grappling holds. The sport can either be genuinely competitive or sportive entertainment (see professional wrestling). Wrestling comes in different types[1] such as folkstyle, freestyle, Greco-Roman, catch, submission, judo, sambo and others. A wrestling bout is a physical competition, between two (occasionally more) competitors or sparring partners, who attempt to gain and maintain a superior position. There are a wide range of styles with varying rules with both traditional historic and modern styles. Wrestling techniques have been incorporated into other martial arts as well as military hand-to-hand combat systems.", R.drawable.wrestling));
+
+    }
+
+    private void setUpPreference() {
+        sp = PreferenceManager.getDefaultSharedPreferences(this);
+        editor = sp.edit();
+    }
+}

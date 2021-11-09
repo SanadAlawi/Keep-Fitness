@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">لياقة</string>
+    <string name="username">اسم المستخدم</string>
+    <string name="Password">كلمة السر</string>
+    <string name="Login">تسجيل الدخول</string>
+    <string name="remember">تذكرني</string>
+    <string name="fitness">حافظ على لياقتك</string>
+    <string name="sign">سجل الان</string>
+    <string name="firstName">اسم الاول</string>
+    <string name="lastName">اسم الاخير</string>
+    <string name="address">العنوان</string>
+    <string name="rePassword">اعادة كلمة السر</string>
+    <string name="or">او</string>
+    <string name="signTitle">سجل دخول لحساب جديد</string>
+    <string name="hyper_login">تملك بالفعل حساب</string>
+    <string name="login_here">سجل هنا</string>
+<!--    <string name="login_here2">تملك بالفعل حساب <a href="android.R.layout.activity_login">سجل هنا</a>  </string>-->
+</resources>

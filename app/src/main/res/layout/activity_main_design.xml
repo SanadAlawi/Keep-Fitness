@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/MainActivity_lv_sportImage"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@color/blue"
+        android:layout_marginEnd="10dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/MainActivity_lv_sportName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sport Name"
+            android:textSize="25dp"
+            android:layout_margin="5dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/MainActivity_lv_sportBestTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sport Time"
+            android:textSize="20dp"
+            android:layout_margin="5dp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/MainActivity_lv_sportInformation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Sport Information"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        android:paddingTop="50dp"/>
+
+
+</LinearLayout>
